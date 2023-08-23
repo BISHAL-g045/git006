@@ -9,12 +9,12 @@ bat 'dir /OD /T:W /A:-D'
   }
 }
   
-  stage ("Build Nodejs Image") {
+  stage("Build Nodejs Image") {
     steps {
-      sh 'sudo docker build -t nodejs .'
-      sh 'sudo docker ps'
+        bat 'docker build -t nodejs .'
+        bat 'docker ps'
     }
-  }
+}
   
   stage ("Delivery of Image to Docker Hub") {
     steps {
