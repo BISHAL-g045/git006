@@ -10,11 +10,10 @@ pipeline {
         }
         stage ('Build') {
             steps {
-            sh 'pwd'
-            sh 'touch a.txt'
-            sh 'ls -ltr'
-            sh 'whoami'
-            sh 'sudo docker ps'
+            bat 'pwd'
+            bat 'docker ps'
+            bat 'dir'
+            bat 'whoami'
             }
         }
     }
