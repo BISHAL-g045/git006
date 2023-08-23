@@ -24,8 +24,8 @@ stage("Clone Git Repository") {
   
   stage ("Delivery of Image to Docker Hub") {
     steps {
-      bat 'docker image tag nodejs susigugh/nodejs:1.0'
-      bat 'docker push -f susigugh/nodejs:1.0'
+      bat 'docker image tag nodejs bishalg01/nodejs:1.0'
+      bat 'docker push -f bishalg01/nodejs:1.0'
     }
   }
   
