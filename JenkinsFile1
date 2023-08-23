@@ -24,18 +24,18 @@ stage("Clone Git Repository") {
   
   stage ("Delivery of Image to Docker Hub") {
     steps {
-      sh 'sudo docker image tag nodejs susigugh/nodejs:1.0'
-      sh 'sudo docker push susigugh/nodejs:1.0'
+      bat 'sudo docker image tag nodejs susigugh/nodejs:1.0'
+      bat 'sudo docker push susigugh/nodejs:1.0'
     }
   }
   
     stage ("Deployment to Kubernetes") {
     steps {
-      sh 'chmod 400 <pemfile>'
-      sh 'ls -ltr'
-      sh 'scp -i <pemfile> -o StrictHostKeyChecking=no rep01.yml ec2-user@43.204.109.189:/home/ec2-user/'
-      sh 'ssh -i <pemfile> -o StrictHostKeyChecking=no ec2-user@<IP> "kubectl delete -f rep01.yml"'
-      sh 'ssh -i <pemfile> -o StrictHostKeyChecking=no ec2-user@<IP> "kubectl create -f rep01.yml"'
+      bat 'chmod 400 <pemfile>'
+      bat 'dir /OD /T:W /A:-D'
+      bat 'scp -i <pemfile> -o StrictHostKeyChecking=no rep01.yml ec2-user@43.204.109.189:/home/ec2-user/'
+      bat 'ssh -i <pemfile> -o StrictHostKeyChecking=no ec2-user@<IP> "kubectl delete -f rep01.yml"'
+      bat 'ssh -i <pemfile> -o StrictHostKeyChecking=no ec2-user@<IP> "kubectl create -f rep01.yml"'
     }
   }
   
