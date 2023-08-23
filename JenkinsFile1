@@ -8,7 +8,13 @@ bat 'cd'
 bat 'dir /OD /T:W /A:-D'
   }
 }
-  
+
+stage("Clone Git Repository") {
+    steps {
+        git branch: 'main', url: 'https://github.com/SUSIGUGH/docker02.git'
+    }
+}
+
   stage("Build Nodejs Image") {
     steps {
         bat 'docker build -t nodejs .'
