@@ -36,6 +36,3 @@ bat 'dir /OD /T:W /A:-D'
  
 }
 }
-
-
-https://github.com/SUSIGUGH/docker02.git
