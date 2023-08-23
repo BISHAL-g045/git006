@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Build') {
             steps {
-            bat 'pwd'
+            bat 'echo "Hello"'
             bat 'docker ps'
             bat 'dir'
             bat 'whoami'
