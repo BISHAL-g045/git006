@@ -4,8 +4,8 @@ stages {
   
 stage ("List Files") {
   steps {
-sh 'pwd'
-sh 'ls -ltr'
+bat 'cd'
+bat 'dir /OD /T:W /A:-D'
   }
 }
   
