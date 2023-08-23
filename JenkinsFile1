@@ -1,5 +1,9 @@
 pipeline {
 agent any
+environment {
+        DOCKERHUB_CREDENTIAL = credentials('mydockerhub')
+    }
+
 stages {
   
 stage ("List Files") {
@@ -24,6 +28,7 @@ stage("Clone Git Repository") {
   
   stage ("Delivery of Image to Docker Hub") {
     steps {
+      bat "docker login -u ${DOCKERHUB_CREDENTIAL_USR} -p ${DOCKERHUB_CREDENTIAL_PSW}"
       bat 'docker image tag nodejs bishalg01/nodejs:1.0'
       bat 'docker push bishalg01/nodejs:1.0'
     }
