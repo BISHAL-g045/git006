@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nodejs-test
+  namespace: bishal
+  labels:
+    app: nodejs
+ 
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejs-container
+          image: bishalg01/nodejs:1.0
+  selector:
+    matchLabels:
+      app: nodejs
