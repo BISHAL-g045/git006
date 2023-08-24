@@ -8,8 +8,8 @@ stages {
   
 stage ("List Files") {
   steps {
-bat 'cd'
-bat 'dir /OD /T:W /A:-D'
+sh 'cd'
+sh 'dir /OD /T:W /A:-D'
   }
 }
 
@@ -21,29 +21,23 @@ stage("Clone Git Repository") {
 
   stage("Build Nodejs Image") {
     steps {
-        bat 'docker build -t nodejs .'
-        bat 'docker ps'
+        sh 'docker build -t nodejs .'
+        sh 'docker ps'
     }
 }
   
   stage ("Delivery of Image to Docker Hub") {
     steps {
-      bat "docker login -u ${DOCKERHUB_CREDENTIAL_USR} -p ${DOCKERHUB_CREDENTIAL_PSW}"
-      bat 'docker image tag nodejs bishalg01/nodejs:1.0'
-      bat 'docker push bishalg01/nodejs:1.0'
+      sh "docker login -u ${DOCKERHUB_CREDENTIAL_USR} -p ${DOCKERHUB_CREDENTIAL_PSW}"
+      sh 'docker image tag nodejs bishalg01/nodejs:1.0'
+      sh 'docker push bishalg01/nodejs:1.0'
     }
   }
   
     stage ("Deployment to Kubernetes") {
     steps {
-      bat 'chmod 400 <pemfile>'
-      bat 'dir /OD /T:W /A:-D'
-      bat 'scp -i <pemfile> -o StrictHostKeyChecking=no rep01.yml ec2-user@43.204.109.189:/home/ec2-user/'
-      bat 'ssh -i <pemfile> -o StrictHostKeyChecking=no ec2-user@<IP> "kubectl delete -f rep01.yml"'
-      bat 'ssh -i <pemfile> -o StrictHostKeyChecking=no ec2-user@<IP> "kubectl create -f rep01.yml"'
+     sh 'kubectl create -f k8.yml'
     }
   }
-  
- 
 }
 }
