@@ -17,7 +17,7 @@ stages {
     steps {
       bat "docker login -u ${DOCKERHUB_CREDENTIAL_USR} -p ${DOCKERHUB_CREDENTIAL_PSW}"
       bat 'docker image tag nodejs bishalg001/nodejs:1.0'
-      bat 'docker push bishalg001/nodejs:1.0'
+      bat 'docker --debug push bishalg001/nodejs:1.0'
     }
   }
     }
