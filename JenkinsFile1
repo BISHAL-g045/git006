@@ -16,8 +16,8 @@ stages {
   stage ("Delivery of Image to Docker Hub") {
     steps {
       sh "docker login -u ${DOCKERHUB_CREDENTIAL_USR} -p ${DOCKERHUB_CREDENTIAL_PSW}"
-      sh 'docker image tag nodejs bishalg01/nodejss:1.0'
-      sh 'docker --debug push bishalg01/nodejss:1.0'
+      sh 'docker image tag nodejs bishalg01/nodeejss:1.0'
+      sh 'docker --debug push bishalg01/nodeejss:1.0'
     }
   }
     }
